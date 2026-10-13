@@ -1,0 +1,35 @@
+{
+  "name": "scopecrafter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Privacy-first proposal and scope generator for freelance software developers using open-weight Gemma and Backboard SDK",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node test/test-inference.js"
+  },
+  "keywords": [
+    "hacktoberfest-2026",
+    "dev-challenge",
+    "side-hustle",
+    "gemma",
+    "backboard",
+    "render",
+    "ai-agent",
+    "freelance-tools",
+    "scope-generator",
+    "open-weight-ai"
+  ],
+  "author": "ScopeCrafter Team",
+  "license": "MIT",
+  "dependencies": {
+    "backboard-sdk": "^1.5.19",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

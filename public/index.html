@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScopeCrafter - Privacy-First Proposal & Scope Generator for Freelancers</title>
+  <meta name="description" content="Turn messy client requests into winning 3-milestone proposals in seconds. Built for freelancers with open-weight Google Gemma and Backboard SDK.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+            <rect width="28" height="28" rx="8" fill="url(#logo-grad)"/>
+            <path d="M7 14L12 19L21 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366F1"/>
+                <stop offset="0.5" stop-color="#8B5CF6"/>
+                <stop offset="1" stop-color="#EC4899"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">
+            <span>ScopeCrafter</span>
+            <span class="badge badge-pulse">v1.0</span>
+          </div>
+          <div class="brand-subtitle">Privacy-First Freelance Proposal Engine</div>
+        </div>
+      </div>
+
+      <div class="header-metrics">
+        <div class="metric-pill" title="Target Side Hustle Business Model">
+          <span class="pill-dot emerald"></span>
+          <span class="pill-label">Side Hustle ROI:</span>
+          <span class="pill-value">$5/mo SaaS &bull; Saves 10+ hrs/bid</span>
+        </div>
+        <div class="metric-pill" id="shield-status-pill" title="NDA Protection Guaranteed">
+          <span class="pill-dot cyan"></span>
+          <span class="pill-label">Privacy Shield:</span>
+          <span class="pill-value">Active (Zero-Retention)</span>
+        </div>
+        <div class="metric-pill" title="Targeting Best Use of Gemma & Backboard">
+          <span class="pill-dot violet"></span>
+          <span class="pill-label">Model:</span>
+          <span class="pill-value">Gemma 4 26B MoE ($0 Cost)</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button id="settings-btn" class="icon-btn" aria-label="API Settings" title="Configure Backboard / OpenRouter API Keys">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <a href="https://github.com/scope-crafter/scopecrafter" target="_blank" rel="noopener" class="btn btn-secondary btn-sm github-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-main">
+    <div class="studio-layout">
+      
+      <!-- LEFT COLUMN: Input & Configuration -->
+      <section class="studio-column input-column" aria-label="Proposal Input & Tuning Station">
+        
+        <!-- Card 1: Client Brief Input -->
+        <div class="glass-card input-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step">Step 1</span>
+              <h2 class="card-title">Client Inquiry & Notes</h2>
+            </div>
+            <div class="card-actions">
+              <button id="clear-input-btn" class="text-btn" title="Clear text">Clear</button>
+            </div>
+          </div>
+
+          <p class="card-desc">Paste messy client emails, Slack conversations, meeting transcripts, or rough specs.</p>
+
+          <!-- Sample Template Picker -->
+          <div class="template-selector-group">
+            <span class="template-label">Quick Samples:</span>
+            <div class="template-pills" id="template-pills-container">
+              <!-- Dynamically populated from /api/templates -->
+              <button class="template-pill active" data-id="fintech-nda-email">🔒 Fintech NDA Email</button>
+              <button class="template-pill" data-id="messy-slack-saas">💬 Messy Slack Chat</button>
+              <button class="template-pill" data-id="ecommerce-redesign">🛍️ E-Commerce Redesign</button>
+              <button class="template-pill" data-id="ai-agent-workflow">🤖 AI Agent Pipeline</button>
+            </div>
+          </div>
+
+          <div class="textarea-wrapper">
+            <textarea 
+              id="client-prompt-input" 
+              class="styled-textarea" 
+              placeholder="Paste raw client email, chat messages, or project bullet points here... (e.g. 'Hey, we need an MVP dashboard in 4 weeks with Stripe billing, PostgreSQL, and team permissions...')"
+              rows="11"
+              spellcheck="false"
+            ></textarea>
+            <div class="textarea-footer">
+              <div class="word-counter" id="word-count-display">0 words &bull; 0 chars</div>
+              <div class="shortcut-tip">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to Craft</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Freelancer Tuning & Privacy Settings -->
+        <div class="glass-card settings-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step">Step 2</span>
+              <h2 class="card-title">Proposal Parameters & Privacy</h2>
+            </div>
+          </div>
+
+          <div class="params-grid">
+            <!-- Hourly Rate Control -->
+            <div class="param-control">
+              <div class="param-label-row">
+                <label for="hourly-rate-input">Freelance Hourly Rate</label>
+                <span class="param-value-badge" id="hourly-rate-display">$85/hr</span>
+              </div>
+              <input type="range" id="hourly-rate-slider" min="35" max="250" step="5" value="85" class="styled-slider">
+              <div class="slider-ticks">
+                <span>$35</span>
+                <span>$85</span>
+                <span>$150</span>
+                <span>$250+</span>
+              </div>
+            </div>
+
+            <!-- Target Timeline -->
+            <div class="param-control">
+              <div class="param-label-row">
+                <label for="target-weeks-select">Target Timeline</label>
+                <span class="param-value-badge" id="target-weeks-display">4 Weeks</span>
+              </div>
+              <select id="target-weeks-select" class="styled-select">
+                <option value="2">2 Weeks (Fast-Track Sprint)</option>
+                <option value="3">3 Weeks (Standard MVP)</option>
+                <option value="4" selected>4 Weeks (Recommended)</option>
+                <option value="6">6 Weeks (Multi-Feature Release)</option>
+                <option value="8">8 Weeks (Comprehensive Build)</option>
+              </select>
+            </div>
+
+            <!-- Tech Stack Preference -->
+            <div class="param-control full-width">
+              <label for="stack-pref-input">Preferred Tech Stack</label>
+              <input type="text" id="stack-pref-input" class="styled-input" placeholder="e.g. Next.js + PostgreSQL, Python / FastAPI, or Auto-Recommend" value="Auto-Recommend">
+            </div>
+          </div>
+
+          <!-- Privacy Shield Toggle -->
+          <div class="privacy-shield-box">
+            <div class="shield-info">
+              <div class="shield-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shield-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span class="shield-title">NDA Privacy Shield</span>
+                <span class="badge badge-success">Recommended</span>
+              </div>
+              <p class="shield-desc">Auto-redacts confidential client names, emails, secret tokens, and internal staging URLs before model processing. Enforces open-weight zero-retention guarantee.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="privacy-shield-toggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <!-- Generate Action Button -->
+          <button id="generate-btn" class="btn btn-primary btn-glow btn-lg btn-block">
+            <span class="btn-icon">✨</span>
+            <span class="btn-text">Craft 3-Milestone Proposal</span>
+            <span class="btn-loader spinner" hidden></span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: Interactive Studio & Output -->
+      <section class="studio-column output-column" aria-label="Interactive Proposal Studio">
+        
+        <div class="glass-card output-card">
+          <!-- Output Card Navigation -->
+          <div class="card-header output-tabs-header">
+            <div class="tab-list" role="tablist">
+              <button class="tab-btn active" data-tab="breakdown-tab" role="tab" aria-selected="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span>Milestone Studio</span>
+              </button>
+              <button class="tab-btn" data-tab="proposal-tab" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+                <span>Formatted Proposal (Client Pitch)</span>
+              </button>
+              <button class="tab-btn" data-tab="audit-tab" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Privacy & Engine Audit</span>
+                <span class="tab-counter" id="audit-count-badge">5</span>
+              </button>
+            </div>
+
+            <div class="output-actions-toolbar">
+              <button id="copy-markdown-btn" class="btn btn-secondary btn-sm" title="Copy Markdown to Clipboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy MD</span>
+              </button>
+              <button id="print-pdf-btn" class="btn btn-secondary btn-sm" title="Print or Save as PDF">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                <span>Export PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Loading State Overlay -->
+          <div id="generation-loader" class="generation-loader-overlay" hidden>
+            <div class="loader-content">
+              <div class="loader-spinner-ring"></div>
+              <h3 class="loader-title" id="loader-status-text">Synthesizing Project Scope...</h3>
+              <div class="loader-steps">
+                <div class="step-item active" id="l-step-1">
+                  <span class="step-dot"></span>
+                  <span>1. Sanitizing NDA data with Privacy Shield</span>
+                </div>
+                <div class="step-item" id="l-step-2">
+                  <span class="step-dot"></span>
+                  <span>2. Routing request to Gemma 4 26B MoE via Backboard</span>
+                </div>
+                <div class="step-item" id="l-step-3">
+                  <span class="step-dot"></span>
+                  <span>3. Structuring 3 milestones, hours & scope boundaries</span>
+                </div>
+                <div class="step-item" id="l-step-4">
+                  <span class="step-dot"></span>
+                  <span>4. Assembling formatted commercial proposal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 1: MILESTONE STUDIO BREAKDOWN -->
+          <div class="tab-pane active" id="breakdown-tab" role="tabpanel">
+            
+            <!-- Summary Banner -->
+            <div class="proposal-banner">
+              <div class="banner-top">
+                <span class="project-tag" id="proposal-domain-tag">B2B SaaS Analytics & Operations Platform</span>
+                <span class="model-tag" id="proposal-model-tag">Gemma 4 26B MoE &bull; $0.00 Inference</span>
+              </div>
+              <h1 class="proposal-title" id="proposal-title-display">Production B2B SaaS Platform & Interactive Analytics Hub</h1>
+              <p class="proposal-summary" id="proposal-summary-display">The client requires a production-grade full-stack platform to replace manual workflows and streamline core business operations.</p>
+            </div>
+
+            <!-- Commercial Metrics Summary Cards -->
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-label">Total Commercial Bid</div>
+                <div class="metric-number text-accent" id="metric-total-cost">$6,800</div>
+                <div class="metric-sub" id="metric-rate-sub">at $85/hr agreed rate</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Total Estimated Effort</div>
+                <div class="metric-number" id="metric-total-hours">80 hrs</div>
+                <div class="metric-sub">Across 3 milestones</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Project Timeline</div>
+                <div class="metric-number" id="metric-total-weeks">4.0 wks</div>
+                <div class="metric-sub">Phased delivery schedule</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Payment Security</div>
+                <div class="metric-number text-emerald" id="metric-deposit-cost">$2,040</div>
+                <div class="metric-sub">30% upfront deposit on signing</div>
+              </div>
+            </div>
+
+            <!-- Real-Time Commercial Calculator Bar -->
+            <div class="calculator-bar">
+              <div class="calc-label-col">
+                <span class="calc-title">💡 Dynamic Rate Recalculator</span>
+                <span class="calc-desc">Adjust rate on the fly to see instant milestone payout recalibration:</span>
+              </div>
+              <div class="calc-slider-col">
+                <input type="range" id="recalc-rate-slider" min="40" max="250" step="5" value="85" class="styled-slider">
+                <span class="recalc-rate-val" id="recalc-rate-val">$85/hr</span>
+              </div>
+            </div>
+
+            <!-- Recommended Technical Architecture -->
+            <div class="section-container">
+              <h3 class="section-title">
+                <span class="section-icon">⚙️</span>
+                <span>Recommended Technical Architecture</span>
+              </h3>
+              <div class="tech-stack-cards" id="tech-stack-container">
+                <div class="stack-card">
+                  <div class="stack-type">Frontend</div>
+                  <div class="stack-name" id="stack-fe">React 19 + TypeScript + Tailwind CSS</div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-type">Backend</div>
+                  <div class="stack-name" id="stack-be">Express / Node.js + RBAC Guards</div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-type">Database</div>
+                  <div class="stack-name" id="stack-db">PostgreSQL with Prisma ORM</div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-type">Deployment</div>
+                  <div class="stack-name" id="stack-infra">Render Managed Web Service</div>
+                </div>
+              </div>
+              <p class="stack-rationale" id="stack-rationale-display">
+                Rationale: Selected for maximum reliability, speed of execution, and zero vendor lock-in.
+              </p>
+            </div>
+
+            <!-- 3-Milestone Phased Timeline -->
+            <div class="section-container">
+              <h3 class="section-title">
+                <span class="section-icon">📅</span>
+                <span>Phased 3-Milestone Scope Breakdown</span>
+              </h3>
+              
+              <div class="milestones-timeline" id="milestones-container">
+                <!-- Milestone 1 -->
+                <div class="milestone-card milestone-1">
+                  <div class="milestone-badge-row">
+                    <span class="milestone-num">Milestone 1</span>
+                    <span class="milestone-share">30% Payout &bull; $2,040 USD</span>
+                  </div>
+                  <h4 class="milestone-title">Architectural Foundation, Relational Schema & Auth Core</h4>
+                  <div class="milestone-meta">
+                    <span>⏱️ Duration: 1.2 weeks</span>
+                    <span>⌛ Effort: 24 hours</span>
+                  </div>
+                  <div class="deliverables-block">
+                    <h5>Key Deliverables</h5>
+                    <ul>
+                      <li>Complete technical architecture blueprint and system data model specification</li>
+                      <li>Database provisioning and relational schema migrations (PostgreSQL)</li>
+                      <li>Authentication, session management, and role-based permissions (RBAC)</li>
+                      <li>Core responsive layout scaffold with design tokens and reusable UI primitives</li>
+                    </ul>
+                  </div>
+                  <div class="acceptance-block">
+                    <h5>Acceptance Criteria</h5>
+                    <div class="criteria-tags">
+                      <span class="crit-tag">✓ Clean schema migration</span>
+                      <span class="crit-tag">✓ Validated OAuth / Auth</span>
+                      <span class="crit-tag">✓ Responsive shell</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="milestone-card milestone-2">
+                  <div class="milestone-badge-row">
+                    <span class="milestone-num">Milestone 2</span>
+                    <span class="milestone-share">50% Payout &bull; $3,400 USD</span>
+                  </div>
+                  <h4 class="milestone-title">Core Feature Implementation & External Integrations</h4>
+                  <div class="milestone-meta">
+                    <span>⏱️ Duration: 2.0 weeks</span>
+                    <span>⌛ Effort: 40 hours</span>
+                  </div>
+                  <div class="deliverables-block">
+                    <h5>Key Deliverables</h5>
+                    <ul>
+                      <li>End-to-end implementation of all primary client modules</li>
+                      <li>Third-party API integration and resilient webhook handling with idempotency</li>
+                      <li>Real-time state synchronization, dashboard views, and filtering/search</li>
+                      <li>Staging environment deployment for client feedback and milestone sign-off</li>
+                    </ul>
+                  </div>
+                  <div class="acceptance-block">
+                    <h5>Acceptance Criteria</h5>
+                    <div class="criteria-tags">
+                      <span class="crit-tag">✓ All primary flows executable</span>
+                      <span class="crit-tag">✓ Webhooks verified</span>
+                      <span class="crit-tag">✓ Live staging review link</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="milestone-card milestone-3">
+                  <div class="milestone-badge-row">
+                    <span class="milestone-num">Milestone 3</span>
+                    <span class="milestone-share">20% Payout &bull; $1,360 USD</span>
+                  </div>
+                  <h4 class="milestone-title">Security Hardening, Production Deployment & Handover</h4>
+                  <div class="milestone-meta">
+                    <span>⏱️ Duration: 0.8 weeks</span>
+                    <span>⌛ Effort: 16 hours</span>
+                  </div>
+                  <div class="deliverables-block">
+                    <h5>Key Deliverables</h5>
+                    <ul>
+                      <li>End-to-end security audit (OWASP checklist, rate limiting, SQL injection defense)</li>
+                      <li>Cross-browser QA testing and mobile responsive validation</li>
+                      <li>Production deployment to Render with custom domain SSL configuration</li>
+                      <li>Complete developer handoff documentation, environment variable guide, and walkthrough video</li>
+                    </ul>
+                  </div>
+                  <div class="acceptance-block">
+                    <h5>Acceptance Criteria</h5>
+                    <div class="criteria-tags">
+                      <span class="crit-tag">✓ Production SSL live</span>
+                      <span class="crit-tag">✓ Zero critical vulnerabilities</span>
+                      <span class="crit-tag">✓ Full repo ownership transfer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Out-of-Scope Boundaries (Scope Creep Guardrails) -->
+            <div class="section-container">
+              <h3 class="section-title">
+                <span class="section-icon">🛡️</span>
+                <span>Explicit Out-of-Scope Boundaries (Scope Creep Guardrails)</span>
+              </h3>
+              <div class="out-of-scope-card">
+                <p class="scope-note">These items are explicitly excluded from the current budget and timeline to guarantee on-time delivery without freelancer overwork:</p>
+                <ul class="scope-list" id="out-of-scope-container">
+                  <li>❌ Native mobile app binary store submissions (iOS App Store / Google Play) unless separately contracted</li>
+                  <li>❌ Ongoing multi-lingual translation and localized content authoring</li>
+                  <li>❌ Third-party platform infrastructure fees (Stripe fees, Render cloud tiers, external SaaS subscriptions)</li>
+                  <li>❌ Major architectural changes outside agreed deliverables (available as Phase 2 expansion)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Risk Assessment & Mitigation -->
+            <div class="section-container">
+              <h3 class="section-title">
+                <span class="section-icon">⚠️</span>
+                <span>Technical Risk Assessment & Mitigation Plan</span>
+              </h3>
+              <div class="risks-grid" id="risks-container">
+                <div class="risk-card">
+                  <div class="risk-header">
+                    <span class="risk-badge">Third-Party APIs</span>
+                    <span class="risk-label">Delayed Vendor Credentials</span>
+                  </div>
+                  <p class="risk-mitigation">Mitigation: Stub all third-party payloads using sandbox mock servers to prevent blocking Milestone 1 development.</p>
+                </div>
+                <div class="risk-card">
+                  <div class="risk-header">
+                    <span class="risk-badge">Scope Creep</span>
+                    <span class="risk-label">Iterative Feedback Expansions</span>
+                  </div>
+                  <p class="risk-mitigation">Mitigation: Strict acceptance criteria defined per milestone. 2 rounds of review included; new features deferred to Phase 2.</p>
+                </div>
+                <div class="risk-card">
+                  <div class="risk-header">
+                    <span class="risk-badge">Client Privacy</span>
+                    <span class="risk-label">NDA & Proprietary Data</span>
+                  </div>
+                  <p class="risk-mitigation">Mitigation: Enforced Privacy Shield with open-weight Gemma processing under zero cloud retention guarantees.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TAB 2: FORMATTED PROPOSAL (CLIENT PITCH) -->
+          <div class="tab-pane" id="proposal-tab" role="tabpanel">
+            <div class="formatted-proposal-container" id="markdown-proposal-rendered">
+              <!-- Rendered Markdown goes here -->
+            </div>
+          </div>
+
+          <!-- TAB 3: PRIVACY & ENGINE AUDIT LOG -->
+          <div class="tab-pane" id="audit-tab" role="tabpanel">
+            <div class="audit-container">
+              <div class="audit-hero">
+                <div class="audit-status-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Zero-Retention Verification: Certified Compliant</span>
+                </div>
+                <h3 class="audit-title">Open-Weight Privacy Shield Audit Trail</h3>
+                <p class="audit-desc">Freelance software developers frequently sign strict Non-Disclosure Agreements (NDAs). Sending client briefs and proprietary trade secrets to closed commercial APIs creates major intellectual property liability. ScopeCrafter sanitizes confidential tokens locally and routes inference exclusively to open-weight Google Gemma architectures.</p>
+              </div>
+
+              <div class="audit-grid">
+                <div class="audit-stat-card">
+                  <div class="stat-num text-emerald" id="audit-stat-tokens-redacted">4</div>
+                  <div class="stat-name">Sensitive Entities Masked</div>
+                  <div class="stat-desc">Emails, API keys, internal URLs</div>
+                </div>
+                <div class="audit-stat-card">
+                  <div class="stat-num text-cyan" id="audit-stat-inference-cost">$0.00</div>
+                  <div class="stat-name">Marginal Inference Cost</div>
+                  <div class="stat-desc">Enables scalable $5/mo side hustle margin</div>
+                </div>
+                <div class="audit-stat-card">
+                  <div class="stat-num text-violet" id="audit-stat-model">Gemma 4 26B</div>
+                  <div class="stat-name">Open-Weight Model</div>
+                  <div class="stat-desc">MoE reasoning activating ~3.8B per token</div>
+                </div>
+              </div>
+
+              <div class="audit-log-section">
+                <h4 class="audit-log-title">Sanitization Execution Log</h4>
+                <div class="audit-log-list" id="audit-log-items-container">
+                  <div class="log-item">
+                    <span class="log-icon text-emerald">✓</span>
+                    <div class="log-details">
+                      <div class="log-head">Sanitized Client Email Addresses</div>
+                      <div class="log-sub">Masked 1 client email address to prevent PII leakage</div>
+                    </div>
+                  </div>
+                  <div class="log-item">
+                    <span class="log-icon text-emerald">✓</span>
+                    <div class="log-details">
+                      <div class="log-head">Confidential API Key Protection</div>
+                      <div class="log-sub">Masked 1 secret API key (sk-live_...) with secure placeholder</div>
+                    </div>
+                  </div>
+                  <div class="log-item">
+                    <span class="log-icon text-emerald">✓</span>
+                    <div class="log-details">
+                      <div class="log-head">Protected Internal Staging Environment URL</div>
+                      <div class="log-sub">Redacted internal server port and domain reference</div>
+                    </div>
+                  </div>
+                  <div class="log-item">
+                    <span class="log-icon text-cyan">✓</span>
+                    <div class="log-details">
+                      <div class="log-head">Zero Cloud Retention Verified</div>
+                      <div class="log-sub">Executed via Google Gemma open-weight runtime with zero training data retention</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Refine / Revision Bar -->
+          <div class="refine-toolbar">
+            <div class="refine-quick-pills">
+              <span class="refine-label">Quick Refine:</span>
+              <button class="refine-pill" data-prompt="Add a dedicated staging deployment step in Milestone 2">Add Staging Step</button>
+              <button class="refine-pill" data-prompt="Adjust budget to be fixed-price under $5,000">Target $5k Fixed Budget</button>
+              <button class="refine-pill" data-prompt="Require 50% upfront deposit on contract signing">50% Upfront Deposit</button>
+              <button class="refine-pill" data-prompt="Add a 30-day post-launch maintenance retainer milestone">Add 30-Day Retainer</button>
+            </div>
+            <div class="refine-input-row">
+              <input type="text" id="refine-input" class="styled-input" placeholder="Want to tweak this scope? Type a revision (e.g. 'Shorten timeline to 3 weeks' or 'Add Docker setup')...">
+              <button id="refine-submit-btn" class="btn btn-secondary">
+                <span>Update Scope</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Settings Modal (Native Dialog) -->
+  <dialog id="settings-dialog" class="styled-dialog">
+    <div class="dialog-header">
+      <div class="dialog-title-group">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="dialog-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <h3>Engine & API Key Settings</h3>
+      </div>
+      <button class="dialog-close-btn" id="close-settings-dialog" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="dialog-body">
+      <p class="dialog-desc">ScopeCrafter runs out-of-the-box using the embedded Gemma 4 26B MoE engine. You can also provide live API keys below to route requests through the official Backboard SDK or OpenRouter Gemma endpoint.</p>
+
+      <div class="form-group">
+        <label for="cfg-backboard-key">Backboard API Key (Targets: <em>Best Use of Backboard</em>)</label>
+        <input type="password" id="cfg-backboard-key" class="styled-input" placeholder="bb_live_..." autocomplete="off">
+        <span class="field-hint">Used by <code>BackboardClient</code> for thread session memory and multi-model routing.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="cfg-openrouter-key">OpenRouter API Key (Targets: <em>Best Use of Gemma</em>)</label>
+        <input type="password" id="cfg-openrouter-key" class="styled-input" placeholder="sk-or-v1-..." autocomplete="off">
+        <span class="field-hint">Routes to <code>google/gemma-4-26b-a4b-it:free</code> at $0.00 zero-cost inference.</span>
+      </div>
+
+      <div id="key-test-feedback" class="feedback-box" hidden></div>
+    </div>
+    <div class="dialog-footer">
+      <button id="test-keys-btn" class="btn btn-secondary">Test Connection</button>
+      <button id="save-settings-btn" class="btn btn-primary">Save & Apply</button>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

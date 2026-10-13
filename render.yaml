@@ -1,0 +1,23 @@
+# Render Deployment Blueprint for ScopeCrafter
+# Targets: "Best Use of Render" ($200 Prize Track)
+# Hacktoberfest 2026 Open-Source AI Challenge: Week 2 (Side Hustle)
+
+services:
+  - type: web
+    name: scopecrafter
+    runtime: node
+    plan: starter
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: BACKBOARD_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
