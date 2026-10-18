@@ -12,7 +12,7 @@ const ScopeAPI = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(25000)
+      signal: AbortSignal.timeout(65000)
     });
 
     const data = await response.json();
@@ -30,7 +30,7 @@ const ScopeAPI = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(25000)
+      signal: AbortSignal.timeout(65000)
     });
 
     const data = await response.json();

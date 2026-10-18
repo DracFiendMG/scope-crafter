@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (loaderStatusText) {
           const statusMsgs = [
             'Sanitizing confidential client data...',
-            'Routing to Gemma 4 26B MoE via OpenRouter...',
+            'Routing to Gemma 3 12B IT via Backboard SDK...',
             'Calculating milestone hours and contingency...',
             'Finalizing proposal formatting...'
           ];

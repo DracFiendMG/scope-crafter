@@ -4,7 +4,7 @@
 
 import express from 'express';
 import { PrivacyShield } from '../services/privacyShield.js';
-import { GemmaService } from '../services/gemmaService.js';
+import { BackboardService } from '../services/backboardService.js';
 
 const router = express.Router();
 
@@ -20,7 +20,8 @@ router.post('/generate', async (req, res) => {
       targetWeeks = 4,
       stackPreference = 'Auto-Recommend',
       privacyShield = true,
-      openRouterKey
+      apiKey,
+      threadId
     } = req.body;
 
     if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
@@ -45,13 +46,14 @@ router.post('/generate', async (req, res) => {
       });
     }
 
-    // Call Gemma Service via OpenRouter
-    const proposal = await GemmaService.generateScope({
+    // Call Backboard SDK Orchestrator with Gemma 3 12B IT
+    const proposal = await BackboardService.generateScope({
       prompt: sanitizedText,
-      openRouterKey: openRouterKey || process.env.OPENROUTER_API_KEY,
+      apiKey: apiKey || process.env.BACKBOARD_API_KEY,
       hourlyRate: Number(hourlyRate) || 85,
       targetWeeks: Number(targetWeeks) || 4,
-      stackPreference
+      stackPreference,
+      threadId
     });
 
     // Attach privacy audit log
@@ -84,7 +86,8 @@ router.post('/refine', async (req, res) => {
     const {
       originalProposal,
       modificationInstruction,
-      openRouterKey
+      apiKey,
+      threadId
     } = req.body;
 
     if (!originalProposal || !modificationInstruction) {
@@ -93,10 +96,11 @@ router.post('/refine', async (req, res) => {
       });
     }
 
-    const updatedProposal = await GemmaService.refineScope({
+    const updatedProposal = await BackboardService.refineScope({
       originalProposal,
       modificationInstruction,
-      openRouterKey: openRouterKey || process.env.OPENROUTER_API_KEY
+      apiKey: apiKey || process.env.BACKBOARD_API_KEY,
+      threadId
     });
 
     return res.json({

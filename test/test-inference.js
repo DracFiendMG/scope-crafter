@@ -4,6 +4,7 @@
 
 import { PrivacyShield } from '../server/services/privacyShield.js';
 import { GemmaService } from '../server/services/gemmaService.js';
+import { BackboardService } from '../server/services/backboardService.js';
 
 async function runTests() {
   console.log('--- TEST 1: Privacy Shield Verification ---');
@@ -30,7 +31,7 @@ async function runTests() {
   }
   console.log('✅ TEST 1 PASSED: Privacy Shield cleanly masked all sensitive data.\n');
 
-  console.log('--- TEST 2: Gemma MoE Proposal Generation (OpenRouter Engine) ---');
+  console.log('--- TEST 2: Gemma MoE Proposal Generation ---');
   const proposal = await GemmaService.generateScope({
     prompt: shieldResult.sanitizedText,
     hourlyRate: 100,
@@ -54,6 +55,23 @@ async function runTests() {
     throw new Error('FAIL: Formatted markdown proposal missing Milestone 1!');
   }
   console.log('✅ TEST 2 PASSED: 3-Milestone Scope generation and pricing verified.\n');
+
+  console.log('--- TEST 3: BackboardService Multi-Model Orchestration ---');
+  const bbProposal = await BackboardService.generateScope({
+    prompt: 'Build a mobile-first bakery order portal in 3 weeks',
+    hourlyRate: 90,
+    targetWeeks: 3,
+    stackPreference: 'React + Node.js'
+  });
+
+  console.log('BB Project Title:', bbProposal.projectTitle);
+  console.log('BB Model Used:', bbProposal.meta?.modelUsed);
+  console.log('BB Milestones:', bbProposal.milestones?.length);
+
+  if (!bbProposal.milestones || bbProposal.milestones.length !== 3) {
+    throw new Error('FAIL: BackboardService did not produce exactly 3 milestones!');
+  }
+  console.log('✅ TEST 3 PASSED: BackboardService generates valid 3-milestone proposal.\n');
 
   console.log('🎉 ALL ENGINE TESTS PASSED!');
 }

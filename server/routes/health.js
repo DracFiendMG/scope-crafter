@@ -17,10 +17,10 @@ router.get('/health', (req, res) => {
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
     engineConfig: {
-      defaultModel: 'google/gemma-4-26b-a4b-it:free',
-      orchestrator: 'OpenRouter Gemma 4 MoE Engine',
+      defaultModel: 'google/gemma-3-12b-it',
+      orchestrator: 'Backboard SDK Multi-Model Router',
       privacyShield: 'Enabled',
-      openRouterConfigured: !!process.env.OPENROUTER_API_KEY
+      backboardConfigured: !!process.env.BACKBOARD_API_KEY
     }
   });
 });
