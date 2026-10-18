@@ -32,9 +32,8 @@ Worse yet, if you miss a requirement, you risk **unpaid scope creep**. If you pa
 
 ## Demo
 
-* **Live Demo URL:** `https://scopecrafter.onrender.com` (Deployed on Render)
+* **Live Demo URL:** [https://scopecrafter.onrender.com](https://scopecrafter.onrender.com) (Deployed on Render)
 * **Local Run:** `http://localhost:3000` via `npm start`
-* **Demo Walkthrough Video / Recording:** `scopecrafter_demo`
 
 ### Interactive Screenshots
 
@@ -60,6 +59,8 @@ Worse yet, if you miss a requirement, you risk **unpaid scope creep**. If you pa
 ## Code
 
 The full codebase is completely open-source under the MIT License:
+
+🔗 **GitHub Repository:** [https://github.com/DracFiendMG/scope-crafter](https://github.com/DracFiendMG/scope-crafter)
 
 {% github DracFiendMG/scope-crafter %}
 
@@ -137,6 +138,6 @@ To test the tool in the real world, I handed ScopeCrafter to a fellow freelance 
 I am officially entering ScopeCrafter into the following Hacktoberfest Week 2 categories:
 
 * 🌟 **Overall Winner ($250 USD + DEV++)** — A complete, production-ready micro-SaaS solving the non-billable proposal bottleneck for freelancers.
-* 🧠 **Best Use of Gemma ($200 USD)** — Powered by Google's open-weight `google/gemma-3-12b-it` model to extract requirements, calculate milestone hours, and synthesize contract-grade scope boundaries with zero training retention.
-* ⚡ **Best Use of Backboard ($100 USD)** — Utilizes the official `backboard-sdk` (`BackboardClient`) for multi-turn session continuity (`thread_id`), model routing, and structured JSON generation.
-* 🚀 **Best Use of Render ($200 USD)** — Fully deployed and managed on Render Cloud via an automated `render.yaml` Infrastructure-as-Code blueprint with continuous auto-deployment and automated health monitoring at `/api/health`.
+* 🧠 **Best Use of Gemma ($200 USD)** — Powered by [Google Gemma 3 12B IT](https://ai.google.dev/gemma) to extract requirements, calculate milestone hours, and synthesize contract-grade scope boundaries with zero training retention.
+* ⚡ **Best Use of Backboard ($100 USD)** — Utilizes the official [Backboard SDK](https://backboard.io) (`BackboardClient`) for multi-turn session continuity (`thread_id`), model routing, and structured JSON generation.
+* 🚀 **Best Use of Render ($200 USD)** — Fully deployed and managed on [Render Cloud](https://render.com) via an automated `render.yaml` Infrastructure-as-Code blueprint with continuous auto-deployment and automated health monitoring at `/api/health`.
