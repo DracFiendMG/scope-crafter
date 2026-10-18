@@ -2,6 +2,11 @@
    ScopeCrafter - Design System Tokens & Base Styles
    ========================================================================== */
 
+/* CSS Reset & Defaults */
+[hidden] {
+  display: none !important;
+}
+
 :root {
   /* Color Tokens - Dark Mode (Default) */
   --bg-primary: #090D16;

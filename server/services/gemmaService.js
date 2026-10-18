@@ -28,7 +28,8 @@ export class GemmaService {
         ],
         temperature: 0.2,
         response_format: { type: 'json_object' }
-      })
+      }),
+      signal: AbortSignal.timeout(8000)
     });
 
     if (!response.ok) {
@@ -42,7 +43,13 @@ export class GemmaService {
       throw new Error('Empty response received from Gemma model');
     }
 
-    return JSON.parse(content);
+    // Strip potential markdown wrappers
+    const cleanJson = content
+      .replace(/^```(?:json)?\s*/i, '')
+      .replace(/\s*```$/i, '')
+      .trim();
+
+    return JSON.parse(cleanJson);
   }
 
   /**

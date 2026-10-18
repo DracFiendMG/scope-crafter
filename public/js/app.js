@@ -186,6 +186,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let loaderStepInterval = null;
   function startLoaderSteps() {
     generationLoader.hidden = false;
+    generationLoader.classList.remove('is-hidden');
+    generationLoader.style.display = 'flex';
     const steps = [
       document.getElementById('l-step-1'),
       document.getElementById('l-step-2'),
@@ -219,9 +221,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function stopLoaderSteps() {
-    if (loaderStepInterval) clearInterval(loaderStepInterval);
-    generationLoader.hidden = true;
+    if (loaderStepInterval) {
+      clearInterval(loaderStepInterval);
+      loaderStepInterval = null;
+    }
+    if (generationLoader) {
+      generationLoader.hidden = true;
+      generationLoader.classList.add('is-hidden');
+      generationLoader.style.display = 'none';
+    }
   }
+
+  // Ensure loader is completely hidden on initial page load
+  stopLoaderSteps();
 
   // --- Generation Action ---
   async function handleGenerate() {

@@ -1085,6 +1085,11 @@ input:checked + .toggle-slider:before {
   text-align: center;
 }
 
+.generation-loader-overlay[hidden],
+.generation-loader-overlay.is-hidden {
+  display: none !important;
+}
+
 .loader-content {
   display: flex;
   flex-direction: column;
