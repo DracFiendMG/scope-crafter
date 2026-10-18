@@ -44,8 +44,8 @@ app.listen(PORT, () => {
   console.log(`\n======================================================`);
   console.log(`✨ ScopeCrafter Server Running`);
   console.log(`🌐 Local URL: http://localhost:${PORT}`);
-  console.log(`🧠 Model: google/gemma-4-26b-a4b-it:free (Open-Weight MoE)`);
-  console.log(`⚡ Orchestration: Backboard SDK Engine`);
+  console.log(`🧠 Model: google/gemma-3-12b-it (via Backboard SDK)`);
+  console.log(`⚡ Orchestration: Backboard SDK Multi-Model Router`);
   console.log(`🔒 Privacy Shield: Active (Automatic NDA-Grade Redaction)`);
   console.log(`======================================================\n`);
 });

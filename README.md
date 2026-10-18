@@ -4,7 +4,7 @@
 > *Built for Hacktoberfest 2026 Open-Source AI Challenge: Week 2 ("Side Hustle")*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Model](https://img.shields.io/badge/Model-Gemma%204%2026B%20MoE-purple.svg)](https://openrouter.ai/models/google/gemma-4-26b-a4b-it:free)
+[![Model](https://img.shields.io/badge/Model-Gemma%203%2012B%20IT-purple.svg)](https://ai.google.dev/gemma)
 [![Orchestration](https://img.shields.io/badge/Orchestration-Backboard%20SDK-orange.svg)](https://backboard.io)
 [![Deploy on Render](https://img.shields.io/badge/Deploy%20to-Render-46E3B7.svg)](render.yaml)
 
@@ -23,7 +23,7 @@ Even worse:
 **ScopeCrafter** is an open-source, privacy-first micro-SaaS engineered specifically for independent software developers:
 * **The Product:** Transforms raw client inquiries into professional 3-milestone technical proposals, complete with acceptance criteria, stack architecture, explicit out-of-scope boundaries, risk mitigation, and commercial payment schedules.
 * **The Side Hustle Economics:** Offered at **$5/month or $9/month subscription**. A single winning bid or 1 saved hour pays for 2 years of the service!
-* **The Open-Weight Margin Advantage:** By orchestrating **Google Gemma 4 26B MoE** (`google/gemma-4-26b-a4b-it:free`) via the **Backboard SDK**, inference cost is **$0.00**. This enables infinitely scalable, near-100% gross profit margins for the side hustle owner without being squeezed by closed API price changes.
+* **The Open-Weight Margin Advantage:** By orchestrating **Google Gemma 3 12B IT** (`google/gemma-3-12b-it`) via the **Backboard SDK**, inference cost remains predictable and lean. This enables infinitely scalable, near-100% gross profit margins for the side hustle owner without being squeezed by closed API price changes.
 
 ---
 
@@ -46,11 +46,11 @@ Even worse:
 |       - Masks PII, emails, phones, API keys & internal staging URLs     |
 |                                                                         |
 |   [2] Backboard SDK Engine (BackboardClient)                            |
-|       - Session & thread memory management                              |
+|       - Session & thread memory management (`thread_id`)                |
 |       - Multi-model routing to open-weight endpoints                    |
 |                                                                         |
-|   [3] Open-Weight Gemma 4 26B MoE (google/gemma-4-26b-a4b-it:free)      |
-|       - 31B-level reasoning at ~3.8B active tokens                      |
+|   [3] Open-Weight Gemma 3 12B IT (google/gemma-3-12b-it)                |
+|       - Deep requirements reasoning and contract milestone synthesis    |
 |       - Zero cloud data retention guarantee                             |
 |       - Fallback to embedded local Gemma MoE engine for offline runs    |
 +------------------------------------+------------------------------------+
@@ -65,7 +65,7 @@ Even worse:
 
 ### Why Open Innovation Matters
 - **NDA & Privacy Shield:** Client requests often contain patentable algorithms, unreleased mockups, and proprietary schemas. Open-weight Gemma processing guarantees zero training data retention and strict confidentiality.
-- **Predictable Zero Marginal Cost:** Closed APIs charge variable per-token fees that spike when processing lengthy meeting transcripts. Gemma 4 MoE enables zero-cost inference, making fixed-price $5/mo subscriptions viable and highly profitable.
+- **Predictable Zero Marginal Cost:** Closed APIs charge variable per-token fees that spike when processing lengthy meeting transcripts. Gemma models orchestrated via Backboard SDK enable sustainable, high-margin $5/mo subscriptions.
 
 ---
 
@@ -74,7 +74,7 @@ Even worse:
 | Category | Partner / Track | How ScopeCrafter Competes | Prize |
 | :--- | :--- | :--- | :--- |
 | **Overall Winner** | DEV Challenge Week 2 | End-to-end usable product solving real freelancer problem with open AI | $250 + DEV++ |
-| **Best Use of Gemma** | Google DeepMind / Gemma | Powered by `google/gemma-4-26b-a4b-it:free` Mixture-of-Experts model | $200 |
+| **Best Use of Gemma** | Google DeepMind / Gemma | Powered by Google's open-weight `google/gemma-3-12b-it` model | $200 |
 | **Best Use of Backboard** | Backboard.io | Uses official `backboard-sdk` for agent session memory and model routing | $100 |
 | **Best Use of Render** | Render Cloud | Automated deployment configuration with `render.yaml` IaC blueprint | $200 |
 
@@ -109,8 +109,8 @@ Even worse:
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/scope-crafter/scopecrafter.git
-cd scopecrafter
+git clone https://github.com/DracFiendMG/scope-crafter.git
+cd scope-crafter
 
 # Install dependencies
 npm install
