@@ -4,7 +4,7 @@
 
 import express from 'express';
 import { PrivacyShield } from '../services/privacyShield.js';
-import { BackboardService } from '../services/backboardService.js';
+import { GemmaService } from '../services/gemmaService.js';
 
 const router = express.Router();
 
@@ -20,7 +20,6 @@ router.post('/generate', async (req, res) => {
       targetWeeks = 4,
       stackPreference = 'Auto-Recommend',
       privacyShield = true,
-      apiKey,
       openRouterKey
     } = req.body;
 
@@ -46,11 +45,10 @@ router.post('/generate', async (req, res) => {
       });
     }
 
-    // Call Backboard SDK Orchestrator
-    const proposal = await BackboardService.generateScope({
+    // Call Gemma Service via OpenRouter
+    const proposal = await GemmaService.generateScope({
       prompt: sanitizedText,
-      apiKey,
-      openRouterKey,
+      openRouterKey: openRouterKey || process.env.OPENROUTER_API_KEY,
       hourlyRate: Number(hourlyRate) || 85,
       targetWeeks: Number(targetWeeks) || 4,
       stackPreference
@@ -86,7 +84,6 @@ router.post('/refine', async (req, res) => {
     const {
       originalProposal,
       modificationInstruction,
-      apiKey,
       openRouterKey
     } = req.body;
 
@@ -96,11 +93,10 @@ router.post('/refine', async (req, res) => {
       });
     }
 
-    const updatedProposal = await BackboardService.refineScope({
+    const updatedProposal = await GemmaService.refineScope({
       originalProposal,
       modificationInstruction,
-      apiKey,
-      openRouterKey
+      openRouterKey: openRouterKey || process.env.OPENROUTER_API_KEY
     });
 
     return res.json({

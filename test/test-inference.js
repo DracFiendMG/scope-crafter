@@ -3,7 +3,7 @@
  */
 
 import { PrivacyShield } from '../server/services/privacyShield.js';
-import { BackboardService } from '../server/services/backboardService.js';
+import { GemmaService } from '../server/services/gemmaService.js';
 
 async function runTests() {
   console.log('--- TEST 1: Privacy Shield Verification ---');
@@ -30,8 +30,8 @@ async function runTests() {
   }
   console.log('✅ TEST 1 PASSED: Privacy Shield cleanly masked all sensitive data.\n');
 
-  console.log('--- TEST 2: Gemma MoE Proposal Generation ---');
-  const proposal = await BackboardService.generateScope({
+  console.log('--- TEST 2: Gemma MoE Proposal Generation (OpenRouter Engine) ---');
+  const proposal = await GemmaService.generateScope({
     prompt: shieldResult.sanitizedText,
     hourlyRate: 100,
     targetWeeks: 4,

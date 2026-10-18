@@ -18,9 +18,8 @@ router.get('/health', (req, res) => {
     environment: process.env.NODE_ENV || 'development',
     engineConfig: {
       defaultModel: 'google/gemma-4-26b-a4b-it:free',
-      orchestrator: 'Backboard SDK',
+      orchestrator: 'OpenRouter Gemma 4 MoE Engine',
       privacyShield: 'Enabled',
-      backboardConfigured: !!process.env.BACKBOARD_API_KEY,
       openRouterConfigured: !!process.env.OPENROUTER_API_KEY
     }
   });
